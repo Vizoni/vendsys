@@ -33,13 +33,17 @@ export function MicroMarketsView({ onMarketDetailsChange }: MicroMarketsViewProp
 
   return (
     <>
-      <section className='gap-4 p-4 flex flex-row items-center'>
+      <section className='gap-4 p-4 flex flex-row items-center border-b border-border'>
         <div className='flex flex-row items-center gap-2'>
-          <FieldLabel htmlFor='region' className='text-body-sm'>
+          <label htmlFor='region-filter' className='text-body-sm font-medium'>
             {t('microMarkets.region')}
-          </FieldLabel>
+          </label>
           <Select defaultValue=''>
-            <SelectTrigger id='region' className='w-48'>
+            <SelectTrigger
+              id='region-filter'
+              className='w-48'
+              aria-label={t('microMarkets.region')}
+            >
               <SelectValue placeholder={t('microMarkets.locations.selectPlaceholder')} />
             </SelectTrigger>
             <SelectContent>
@@ -51,17 +55,25 @@ export function MicroMarketsView({ onMarketDetailsChange }: MicroMarketsViewProp
           </Select>
         </div>
         <FieldSet className='flex flex-row items-center gap-2 whitespace-nowrap'>
-          <FieldLabel htmlFor='include-inactive' className='whitespace-nowrap text-body-sm'>
+          <label
+            htmlFor='include-inactive-filter'
+            className='whitespace-nowrap text-body-sm font-medium'
+          >
             {t('microMarkets.includeInactive')}
-          </FieldLabel>
+          </label>
           <FieldGroup>
             <Field orientation='horizontal'>
-              <Checkbox id='include-inactive' defaultChecked />
+              <Checkbox
+                id='include-inactive-filter'
+                defaultChecked
+                aria-label={t('microMarkets.includeInactive')}
+              />
             </Field>
           </FieldGroup>
         </FieldSet>
       </section>
       <section className='p-4'>
+        <h2 className='sr-only'>{t('microMarkets.region')}</h2>
         <MicroMarketsTable
           data={tableData}
           selectedId={selectedMarketId}

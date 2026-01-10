@@ -13,16 +13,19 @@ interface FormFieldProps {
   labelKey: string;
   descriptionKey: string;
   children: React.ReactNode;
+  fieldId?: string;
 }
 
-function FormField({ labelKey, descriptionKey, children }: FormFieldProps) {
+function FormField({ labelKey, descriptionKey, children, fieldId }: FormFieldProps) {
   const { t } = useTranslation();
   return (
-    <div className='flex items-start gap-4'>
-      <div className='w-32 flex-shrink-0 pt-2'>
+    <div className='flex items-start gap-4' role='group'>
+      <label htmlFor={fieldId} className='w-32 flex-shrink-0 pt-2'>
         <FieldLabel className='text-sm'>{t(labelKey)}</FieldLabel>
-        <FieldDescription className='text-xs'>{t(descriptionKey)}</FieldDescription>
-      </div>
+        {descriptionKey && (
+          <FieldDescription className='text-xs'>{t(descriptionKey)}</FieldDescription>
+        )}
+      </label>
       <div className='flex-1'>{children}</div>
     </div>
   );
@@ -117,12 +120,16 @@ export function MicroMarketsForm({
   const isFormDisabled = !data && !isAddingMarket;
 
   return (
-    <div className='bg-card border border-border rounded-lg p-6 min-h-[calc(100vh-200px)] overflow-y-auto'>
+    <form
+      className='bg-card border border-border rounded-lg p-6 min-h-[calc(100vh-200px)] overflow-y-auto'
+      aria-label='Market details form'
+    >
       <h2 className='text-title-3xs font-extrabold tracking-title mb-6'>
         {t('microMarkets.marketDetails')}
       </h2>
 
-      <div className='grid grid-cols-2 gap-8'>
+      <fieldset disabled={isFormDisabled} className='grid grid-cols-2 gap-8'>
+        <legend className='sr-only'>{t('microMarkets.marketDetails')}</legend>
         {/* Info Section */}
         <div>
           <h3 className='text-title-4xs font-semibold tracking-title mb-4 text-foreground'>
@@ -348,7 +355,7 @@ export function MicroMarketsForm({
             </FormField>
           </div>
         </div>
-      </div>
-    </div>
+      </fieldset>
+    </form>
   );
 }

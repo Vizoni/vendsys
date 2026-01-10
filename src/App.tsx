@@ -33,25 +33,37 @@ function App() {
 
   return (
     <>
-      <section className='flex gap-4 p-4 justify-between items-center'>
-        <div className='flex gap-4'>
-          <Button variant='outline' onClick={handleOnClickNewButton}>
-            <PlusIcon className='size-5' />
+      <header
+        className='flex gap-4 p-4 justify-between items-center border-b border-border'
+        role='banner'
+      >
+        <nav className='flex gap-4' aria-label='Main actions'>
+          <Button variant='outline' onClick={handleOnClickNewButton} aria-label={t('buttons.new')}>
+            <PlusIcon className='size-5' aria-hidden='true' />
             {t('buttons.new')}
           </Button>
-          <Button variant='outline' disabled={!selectedMarketDetails}>
-            <TrashIcon className='size-5' />
+          <Button
+            variant='outline'
+            disabled={!selectedMarketDetails}
+            aria-label={t('buttons.delete')}
+          >
+            <TrashIcon className='size-5' aria-hidden='true' />
             {t('buttons.delete')}
           </Button>
-          <Button variant='save' disabled={!hasFormChanges} onClick={handleOnClickSaveButton}>
-            <CheckIcon className='size-5' />
+          <Button
+            variant='save'
+            disabled={!hasFormChanges}
+            onClick={handleOnClickSaveButton}
+            aria-label={t('buttons.save')}
+          >
+            <CheckIcon className='size-5' aria-hidden='true' />
             {t('buttons.save')}
           </Button>
-        </div>
+        </nav>
         <LanguageSwitcher />
-      </section>
-      <section className='flex gap-4 p-4 flex-1'>
-        <div className='w-1/2'>
+      </header>
+      <main className='flex gap-4 p-4 flex-1'>
+        <section className='w-1/2' aria-label='Markets list'>
           <MicroMarketsView
             onMarketDetailsChange={(details) => {
               setSelectedMarketDetails(details);
@@ -59,16 +71,19 @@ function App() {
               setSelectedAssetId(undefined);
             }}
           />
-        </div>
-        <div className='w-1/2 flex flex-col gap-4'>
+        </section>
+        <section className='w-1/2 flex flex-col gap-4' aria-label='Market details'>
           <MicroMarketsForm
             data={selectedMarketDetails}
             isAddingMarket={isAddingMarket}
             onFormChange={setHasFormChanges}
           />
           {selectedMarketDetails && (
-            <div className='bg-card border border-border rounded-lg p-6'>
-              <h3 className='text-base font-extrabold mb-4 text-foreground'>{t('assets.title')}</h3>
+            <section
+              className='bg-card border border-border rounded-lg p-6'
+              aria-label='Assets section'
+            >
+              <h2 className='text-base font-extrabold mb-4 text-foreground'>{t('assets.title')}</h2>
               <AssetsPointTable
                 data={mockAssetPointsTableData.filter((asset) =>
                   asset.kioskId.startsWith(selectedMarketDetails.marketNumber)
@@ -76,10 +91,10 @@ function App() {
                 selectedId={selectedAssetId}
                 onRowClick={setSelectedAssetId}
               />
-            </div>
+            </section>
           )}
-        </div>
-      </section>
+        </section>
+      </main>
     </>
   );
 }

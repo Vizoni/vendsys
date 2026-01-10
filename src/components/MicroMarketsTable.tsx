@@ -33,19 +33,19 @@ export function MicroMarketsTable({
 
   return (
     <div className='overflow-x-auto'>
-      <table className='w-full border-collapse'>
+      <table className='w-full border-collapse' role='grid' aria-label='Micro markets list'>
         <thead>
           <tr className='border-b border-border'>
-            <th className='text-left text-body-md font-semibold py-3 px-4'>
+            <th className='text-left text-body-md font-semibold py-3 px-4' scope='col'>
               {t('microMarkets.marketNumber')}
             </th>
-            <th className='text-left text-body-md font-semibold py-3 px-4'>
+            <th className='text-left text-body-md font-semibold py-3 px-4' scope='col'>
               {t('microMarkets.account')}
             </th>
-            <th className='text-left text-body-md font-semibold py-3 px-4'>
+            <th className='text-left text-body-md font-semibold py-3 px-4' scope='col'>
               {t('microMarkets.active')}
             </th>
-            <th className='text-left text-body-md font-semibold py-3 px-4'>
+            <th className='text-left text-body-md font-semibold py-3 px-4' scope='col'>
               {t('microMarkets.provider')}
             </th>
           </tr>
@@ -55,7 +55,16 @@ export function MicroMarketsTable({
             <tr
               key={row.id}
               onClick={() => handleRowClick(row.id)}
-              className={`cursor-pointer border-b border-border transition-colors ${
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleRowClick(row.id);
+                }
+              }}
+              role='button'
+              tabIndex={0}
+              aria-selected={selectedId === row.id}
+              className={`cursor-pointer border-b border-border transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                 selectedId === row.id ? 'bg-primary/10 hover:bg-primary/15' : 'hover:bg-muted/50'
               }`}
             >
@@ -65,6 +74,7 @@ export function MicroMarketsTable({
                 <Checkbox
                   checked={row.active}
                   onCheckedChange={(checked) => handleCheckboxChange(row.id, checked as boolean)}
+                  aria-label={`${t('microMarkets.active')} for ${row.marketNumber}`}
                 />
               </td>
               <td className='py-3 px-4 text-body-sm'>{row.provider}</td>
