@@ -1,73 +1,79 @@
-# React + TypeScript + Vite
+# VendSys - Micromarkets Form
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive web-based recreation of the VendSys Micromarkets form, built with React, TypeScript, Tailwind CSS, and following Nayax brand identity guidelines.
 
-Currently, two official plugins are available:
+## Running the Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Prerequisites
 
-## React Compiler
+- Node.js 18+
+- npm or yarn package manager
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Installation & Development
 
-## Expanding the ESLint configuration
+```bash
+# Install dependencies
+npm install
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Start development server
+npm run dev
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Open in browser
+# Navigate to http://localhost:5173 (default Vite port)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Building for Production
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# Create production build
+npm run build
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Preview production build locally
+npm run preview
 ```
+
+## Technology Stack
+
+### Core Framework
+
+- **React 19.2.0** - UI library with modern hooks
+- **TypeScript 5.9.3** - Static type checking
+- **Vite 7.2.4** - Fast build tool and dev server
+
+### Styling & UI Components
+
+- **Tailwind CSS 4.1.18** - Utility-first CSS framework
+- **shadcn/ui** - High-quality, accessible React components
+- **Heroicons 2.2.0** - Beautiful SVG icons
+- **Radix UI** - Unstyled, accessible component primitives
+
+## Notes on Any Design Decisions Made
+
+- I brought Save button on top of the form instead of the bottom, just like the Nayax Web print.
+- Tried to use their colors in primary buttons, disable status and things like that
+- Did not use Syncfusion or other because had to register to the website and didn't want to spend time on that and also the learning curve.
+
+## Assumptions and Limitations
+
+- Had to discover what VDI is in the vending machine/micro market context
+  - With this I could understand the relaton between form and tables
+- Did not implement any form validation due time and because I don't know the business rules, what is required or not et cetera. That's why the form is not working.
+- Assumed "New" button clears the form so you can add a new market
+- Assumed "Delete" button would call an API that deletes the selected row
+- Assumed "Save" button update existing info or creates a new market, depending the context
+
+## Future Enhancements (if I had more time)
+
+- Form validation with error handling
+  - Probably using zod + react hook form
+- Advanced table features (sorting, pagination, filtering)
+- API integration for real data
+- Data persistence/local storage/
+  - Use TanStack for data fetching + cache
+- More localization languages
+- Advanced filtering and search
+- Unit tests with jest + react testing library
+
+## Language Switching
+
+Click the language switcher button (top-right corner) to toggle between English and Portuguese (Brazil). Your selection persists within the session.
