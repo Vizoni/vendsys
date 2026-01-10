@@ -7,7 +7,13 @@ import { LanguageSwitcher } from './components/LanguageSwitcher';
 import { MicroMarketsView } from './components/MicroMarketsView';
 import { MicroMarketsForm } from './components/MicroMarketsForm';
 import { AssetsPointTable } from './components/AssetsPointTable';
-import { type MicroMarketDetails, mockAssetPointsTableData } from './data/MicroMarketsData';
+import { AssetList } from './components/AssetList';
+import { Tooltip, TooltipTrigger, TooltipContent } from './components/ui/tooltip';
+import {
+  type MicroMarketDetails,
+  mockAssetPointsTableData,
+  mockAssetListOptions,
+} from './data/MicroMarketsData';
 
 function App() {
   const { t } = useTranslation();
@@ -91,6 +97,24 @@ function App() {
                 selectedId={selectedAssetId}
                 onRowClick={setSelectedAssetId}
               />
+              <div className='mt-6 flex gap-4'>
+                <div className='flex-1'>
+                  <AssetList
+                    assetOptions={mockAssetListOptions}
+                    selectedAssetId={selectedAssetId}
+                    onAssetSelect={setSelectedAssetId}
+                  />
+                </div>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant='outline' disabled aria-label={t('assets.addAsset')}>
+                      <PlusIcon className='size-5' aria-hidden='true' />
+                      {t('assets.addAsset')}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>{t('assets.notImplemented')}</TooltipContent>
+                </Tooltip>
+              </div>
             </section>
           )}
         </section>

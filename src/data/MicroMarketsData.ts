@@ -291,3 +291,41 @@ export const mockAssetPointsTableData: AssetPointRow[] = [
     isCash: true,
   },
 ];
+
+/* ========== ASSET LIST DATA ========== */
+
+// Dados da lista de assets disponíveis para seleção
+export type AssetListOption = {
+  id: string;
+  assetNumber: string;
+  model: string;
+};
+
+// Mock dos dados da lista de assets
+export const mockAssetListOptions: AssetListOption[] = [
+  {
+    id: 'AP-1-001',
+    assetNumber: 'AST-001',
+    model: 'VM-3000',
+  },
+  {
+    id: 'AP-1-002',
+    assetNumber: 'AST-002',
+    model: 'VM-3000',
+  },
+  {
+    id: 'AP-1-003',
+    assetNumber: 'AST-003',
+    model: 'PT-500',
+  },
+  {
+    id: 'AP-3-001',
+    assetNumber: 'AST-006',
+    model: 'VM-3000',
+  },
+  {
+    id: 'AP-3-002',
+    assetNumber: 'AST-007',
+    model: 'VM-3000',
+  },
+];

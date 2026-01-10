@@ -56,6 +56,10 @@
     "category": "Category",
     "model": "Model",
     "isCash": "Is Cash",
-    "noAssetsFound": "No assets registered for this market"
+    "noAssetsFound": "No assets registered for this market",
+    "assetListTitle": "Select Asset",
+    "selectAssetPlaceholder": "Choose an asset",
+    "addAsset": "Add asset",
+    "notImplemented": "This functionality is not yet implemented"
   }
 }

@@ -56,6 +56,10 @@
     "category": "Categoria",
     "model": "Modelo",
     "isCash": "É Dinheiro",
-    "noAssetsFound": "Nenhum ativo registrado para este mercado"
+    "noAssetsFound": "Nenhum ativo registrado para este mercado",
+    "assetListTitle": "Selecionar Ativo",
+    "selectAssetPlaceholder": "Escolha um ativo",
+    "addAsset": "Adicionar ativo",
+    "notImplemented": "Esta funcionalidade ainda não foi implementada"
   }
 }
