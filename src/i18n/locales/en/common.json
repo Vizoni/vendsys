@@ -1,0 +1,32 @@
+{
+  "buttons": {
+    "new": "New",
+    "delete": "Delete",
+    "save": "Save"
+  },
+  "microMarkets": {
+    "title": "Micro Markets",
+    "region": "Region",
+    "includeInactive": "Include Inactive",
+    "marketNumber": "Market #",
+    "account": "Account",
+    "active": "Active",
+    "provider": "Provider",
+    "marketDetails": "Market Details",
+    "info": "Info",
+    "creditCard": "Credit Card",
+    "provider": "Provider",
+    "vdi": "VDI",
+    "noMarketSelected": "Select an item from the table or click \"New\" to create a new record"
+  },
+  "assets": {
+    "title": "Assets",
+    "assetNumber": "Asset #",
+    "kioskId": "Kiosk Id",
+    "serialNumber": "Serial #",
+    "category": "Category",
+    "model": "Model",
+    "isCash": "Is Cash",
+    "noAssetsFound": "No assets registered for this market"
+  }
+}
