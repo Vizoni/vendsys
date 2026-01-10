@@ -1,23 +1,126 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
-import { defineConfig, globalIgnores } from 'eslint/config'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      js.configs.recommended,
-      tseslint.configs.recommended,
-      reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
+module.exports = {
+  root: true,
+  env: {
+    browser: true,
+    es2022: true,
+  },
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:storybook/recommended',
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier', 'simple-import-sort'],
+  rules: {
+    'prettier/prettier': ['error', { endOfLine: 'auto' }, { usePrettierrc: true }],
+    'no-warning-comments': [
+      'error',
+      {
+        terms: ['FIX:'],
+        location: 'anywhere',
+      },
     ],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+    'react/jsx-filename-extension': [
+      1,
+      {
+        extensions: ['.js', '.ts', '.tsx'],
+      },
+    ],
+    'no-shadow': 'off',
+    camelcase: 'off',
+    'import/first': 'error',
+    '@typescript-eslint/no-empty-function': 'off',
+    'no-restricted-exports': 'off',
+    'react/require-default-props': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
+    'import/no-unresolved': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'import/prefer-default-export': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'prefer-promise-reject-errors': 'off',
+    'react-hooks/exhaustive-deps': 'warn',
+    'no-void': 'off',
+    'react/function-component-definition': 'off',
+    'no-restricted-syntax': 'off',
+    'react/destructuring-assignment': 'warn',
+    'no-restricted-globals': 'off',
+    'import/newline-after-import': 'error',
+    'react/display-name': 'off',
+    'import/no-duplicates': 'off',
+    'no-trailing-spaces': 2,
+    '@typescript-eslint/no-misused-promises': 'off',
+    '@typescript-eslint/no-unsafe-return': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/unbound-method': 'off',
+    'default-param-last': 'off',
+    'no-console': [
+      'error',
+      {
+        allow: ['warn', 'error', 'info'],
+      },
+    ],
+    'no-alert': 'off',
+    '@typescript-eslint/restrict-template-expressions': 'off',
+    'space-before-function-parent': 0,
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {},
     },
   },
-])
+  overrides: [
+    {
+      files: ['*.js', '*.jsx', '*.ts', '*.tsx'],
+      rules: {
+        'simple-import-sort/imports': [
+          'error',
+          {
+            groups: [
+              [
+                '^@testing-library(?!/?$)',
+                '^react$',
+                '^@react(?!/?$)',
+                '@faker-js',
+                '@storybook',
+                '@elgorditosalsero',
+                '^@',
+                '^[a-z]',
+              ],
+              ['^@grupoboticario(?!/?$)'],
+              ['^gbapi', '^context', '^routes', '^utils', '^ui', '__mocks__'],
+              ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
+              ['^\\.(?!/?$)', '^\\./?$'],
+            ],
+          },
+        ],
+      },
+    },
+  ],
+};
