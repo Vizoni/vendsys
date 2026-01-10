@@ -123,6 +123,36 @@ h1 {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Brand Colors - Primary */
+  --color-brand-taxi-main: #FFCD00;
+  --color-brand-dark: #262626;
+  --color-brand-light: #FFFFFF;
+  --color-brand-mid: #F3F3F3;
+
+  /* Brand Colors - Supportive Main */
+  --color-brand-iris: #6D5BF7;
+  --color-brand-violet: #2C1036;
+  --color-brand-spring: #25EF89;
+  --color-brand-bright-coral: #FF5C6C;
+
+  /* Brand Colors - Supportive Yellow */
+  --color-brand-taxi-y1: #FFFAE6;
+  --color-brand-taxi-y2: #FFF0B0;
+  --color-brand-taxi-y3: #FFE88A;
+  --color-brand-taxi-y4: #FFDE54;
+  --color-brand-lemon-y1: #FFFFE6;
+  --color-brand-lemon-y2: #FFFEB0;
+  --color-brand-lemon-y3: #FFFD8A;
+  --color-brand-lemon-y4: #FFFB00;
+
+  /* Brand Colors - Supportive Grays */
+  --color-brand-gray-mid-1: #FBFBFB;
+  --color-brand-gray-yellow-2: #F9F9F9;
+  --color-brand-gray-yellow-3: #F5F5F5;
+  --color-brand-gray-lemon-1: #ADADAD;
+  --color-brand-gray-lemon-2: #868686;
+  --color-brand-gray-lemon-3: #666666;
 }
 
 .dark {
