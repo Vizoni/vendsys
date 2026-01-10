@@ -1,13 +1,16 @@
 import './App.css';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { PlusIcon, TrashIcon, CheckIcon } from '@heroicons/react/24/outline';
 import { Button } from './components/ui/button';
+import { LanguageSwitcher } from './components/LanguageSwitcher';
 import { MicroMarketsView } from './components/MicroMarketsView';
 import { MicroMarketsForm } from './components/MicroMarketsForm';
 import { AssetsPointTable } from './components/AssetsPointTable';
 import { type MicroMarketDetails, mockAssetPointsTableData } from './data/MicroMarketsData';
 
 function App() {
+  const { t } = useTranslation();
   const [selectedMarketDetails, setSelectedMarketDetails] = useState<
     MicroMarketDetails | undefined
   >();
@@ -30,19 +33,22 @@ function App() {
 
   return (
     <>
-      <section className='flex gap-4 p-4'>
-        <Button variant='outline' onClick={handleOnClickNewButton}>
-          <PlusIcon className='size-5' />
-          New
-        </Button>
-        <Button variant='outline' disabled={!selectedMarketDetails}>
-          <TrashIcon className='size-5' />
-          Delete
-        </Button>
-        <Button variant='save' disabled={!hasFormChanges} onClick={handleOnClickSaveButton}>
-          <CheckIcon className='size-5' />
-          Save
-        </Button>
+      <section className='flex gap-4 p-4 justify-between items-center'>
+        <div className='flex gap-4'>
+          <Button variant='outline' onClick={handleOnClickNewButton}>
+            <PlusIcon className='size-5' />
+            {t('buttons.new')}
+          </Button>
+          <Button variant='outline' disabled={!selectedMarketDetails}>
+            <TrashIcon className='size-5' />
+            {t('buttons.delete')}
+          </Button>
+          <Button variant='save' disabled={!hasFormChanges} onClick={handleOnClickSaveButton}>
+            <CheckIcon className='size-5' />
+            {t('buttons.save')}
+          </Button>
+        </div>
+        <LanguageSwitcher />
       </section>
       <section className='flex gap-4 p-4 flex-1'>
         <div className='w-1/2'>
@@ -62,7 +68,7 @@ function App() {
           />
           {selectedMarketDetails && (
             <div className='bg-card border border-border rounded-lg p-6'>
-              <h3 className='text-base font-extrabold mb-4 text-foreground'>Assets</h3>
+              <h3 className='text-base font-extrabold mb-4 text-foreground'>{t('assets.title')}</h3>
               <AssetsPointTable
                 data={mockAssetPointsTableData.filter((asset) =>
                   asset.kioskId.startsWith(selectedMarketDetails.marketNumber)

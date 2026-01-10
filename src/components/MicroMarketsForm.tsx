@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FieldLabel, FieldDescription } from './ui/field';
 import { Checkbox } from './ui/checkbox';
 import { Input } from './ui/input';
@@ -9,17 +10,18 @@ import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 import { Button } from './ui/button';
 
 interface FormFieldProps {
-  label: string;
-  description: string;
+  labelKey: string;
+  descriptionKey: string;
   children: React.ReactNode;
 }
 
-function FormField({ label, description, children }: FormFieldProps) {
+function FormField({ labelKey, descriptionKey, children }: FormFieldProps) {
+  const { t } = useTranslation();
   return (
     <div className='flex items-start gap-4'>
       <div className='w-32 flex-shrink-0 pt-2'>
-        <FieldLabel className='text-sm'>{label}</FieldLabel>
-        <FieldDescription className='text-xs'>{description}</FieldDescription>
+        <FieldLabel className='text-sm'>{t(labelKey)}</FieldLabel>
+        <FieldDescription className='text-xs'>{t(descriptionKey)}</FieldDescription>
       </div>
       <div className='flex-1'>{children}</div>
     </div>
@@ -65,6 +67,7 @@ export function MicroMarketsForm({
   isAddingMarket = false,
   onFormChange,
 }: MicroMarketsFormProps) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<MicroMarketDetails>(emptyFormData);
 
   // Sincronizar dados quando data muda (item selecionado na tabela)
@@ -105,9 +108,7 @@ export function MicroMarketsForm({
     return (
       <div className='bg-card border border-border rounded-lg p-6 min-h-[calc(100vh-200px)] flex items-center justify-center'>
         <div className='text-center'>
-          <p className='text-muted-foreground text-base'>
-            Selecione um item da tabela ou clique em "New" para criar um novo registre
-          </p>
+          <p className='text-muted-foreground text-base'>{t('microMarkets.noMarketSelected')}</p>
         </div>
       </div>
     );
@@ -117,20 +118,24 @@ export function MicroMarketsForm({
 
   return (
     <div className='bg-card border border-border rounded-lg p-6 min-h-[calc(100vh-200px)] overflow-y-auto'>
-      <h2 className='text-title-3xs font-extrabold tracking-title mb-6'>Market Details</h2>
+      <h2 className='text-title-3xs font-extrabold tracking-title mb-6'>
+        {t('microMarkets.marketDetails')}
+      </h2>
 
       <div className='grid grid-cols-2 gap-8'>
         {/* Info Section */}
         <div>
-          <h3 className='text-title-4xs font-semibold tracking-title mb-4 text-foreground'>Info</h3>
+          <h3 className='text-title-4xs font-semibold tracking-title mb-4 text-foreground'>
+            {t('microMarkets.info')}
+          </h3>
           <div className='space-y-4'>
-            <FormField label='Active' description='Status'>
+            <FormField labelKey='microMarkets.formLabels.active' descriptionKey=''>
               <div className='pt-1'>
                 <Checkbox checked={formData.isActive} disabled />
               </div>
             </FormField>
 
-            <FormField label='Market Number' description='Unique identifier'>
+            <FormField labelKey='microMarkets.formLabels.marketNumber' descriptionKey=''>
               <Input
                 value={formData.info.marketNumber}
                 onChange={(e) => handleInputChange('info', 'marketNumber', e.target.value)}
@@ -138,7 +143,7 @@ export function MicroMarketsForm({
               />
             </FormField>
 
-            <FormField label='Mgmt Number' description='Management number'>
+            <FormField labelKey='microMarkets.formLabels.mgmtNumber' descriptionKey=''>
               <Input
                 value={formData.info.mgmtNumber}
                 onChange={(e) => handleInputChange('info', 'mgmtNumber', e.target.value)}
@@ -146,7 +151,7 @@ export function MicroMarketsForm({
               />
             </FormField>
 
-            <FormField label='Account' description='Account name'>
+            <FormField labelKey='microMarkets.formLabels.account' descriptionKey=''>
               <Input
                 value={formData.info.account}
                 onChange={(e) => handleInputChange('info', 'account', e.target.value)}
@@ -154,7 +159,7 @@ export function MicroMarketsForm({
               />
             </FormField>
 
-            <FormField label='Location' description='Region/Location'>
+            <FormField labelKey='microMarkets.formLabels.location' descriptionKey=''>
               <Select
                 disabled={isFormDisabled}
                 value={formData.info.location}
@@ -167,13 +172,13 @@ export function MicroMarketsForm({
                 }
               >
                 <SelectTrigger>
-                  <SelectValue placeholder='Select location' />
+                  <SelectValue placeholder={t('microMarkets.locations.selectPlaceholder')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value='north'>North</SelectItem>
-                  <SelectItem value='east'>East</SelectItem>
-                  <SelectItem value='west'>West</SelectItem>
-                  <SelectItem value='south'>South</SelectItem>
+                  <SelectItem value='north'>{t('microMarkets.locations.north')}</SelectItem>
+                  <SelectItem value='east'>{t('microMarkets.locations.east')}</SelectItem>
+                  <SelectItem value='west'>{t('microMarkets.locations.west')}</SelectItem>
+                  <SelectItem value='south'>{t('microMarkets.locations.south')}</SelectItem>
                 </SelectContent>
               </Select>
             </FormField>
@@ -183,10 +188,10 @@ export function MicroMarketsForm({
         {/* Credit Card Section */}
         <div>
           <h3 className='text-title-4xs font-semibold tracking-title mb-4 text-foreground'>
-            Credit Card
+            {t('microMarkets.creditCard')}
           </h3>
           <div className='space-y-4'>
-            <FormField label='Credit Card $' description='Dollar amount'>
+            <FormField labelKey='microMarkets.formLabels.creditCardDollar' descriptionKey=''>
               <Input
                 type='number'
                 value={formData.creditCard.creditCardDollar}
@@ -201,7 +206,7 @@ export function MicroMarketsForm({
               />
             </FormField>
 
-            <FormField label='Credit Card %' description='Percentage amount'>
+            <FormField labelKey='microMarkets.formLabels.creditCardPercent' descriptionKey=''>
               <Input
                 type='number'
                 value={formData.creditCard.creditCardPercent}
@@ -216,7 +221,7 @@ export function MicroMarketsForm({
               />
             </FormField>
 
-            <FormField label='Apply fee' description='Apply to top-ups'>
+            <FormField labelKey='microMarkets.formLabels.applyFee' descriptionKey=''>
               <div className='pt-1'>
                 <Checkbox
                   checked={formData.creditCard.applyFeeToAccountTopUps}
@@ -228,7 +233,7 @@ export function MicroMarketsForm({
               </div>
             </FormField>
 
-            <FormField label='Price Tags' description='Has price tags'>
+            <FormField labelKey='microMarkets.formLabels.priceTags' descriptionKey=''>
               <div className='pt-1'>
                 <Checkbox
                   checked={formData.creditCard.hasPriceTags}
@@ -245,27 +250,33 @@ export function MicroMarketsForm({
         {/* Provider Section */}
         <div>
           <h3 className='text-title-4xs font-semibold tracking-title mb-4 text-foreground'>
-            Provider
+            {t('microMarkets.provider')}
           </h3>
           <div className='space-y-4'>
-            <FormField label='Provider' description='Service provider'>
+            <FormField labelKey='microMarkets.formLabels.provider' descriptionKey=''>
               <Select
                 disabled={isFormDisabled}
                 value={formData.provider.provider}
                 onValueChange={(value) => handleInputChange('provider', 'provider', value)}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder='Select provider' />
+                  <SelectValue placeholder={t('microMarkets.providers.selectPlaceholder')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value='provider-x'>Provider X</SelectItem>
-                  <SelectItem value='provider-y'>Provider Y</SelectItem>
-                  <SelectItem value='provider-z'>Provider Z</SelectItem>
+                  <SelectItem value='provider-x'>
+                    {t('microMarkets.providers.providerX')}
+                  </SelectItem>
+                  <SelectItem value='provider-y'>
+                    {t('microMarkets.providers.providerY')}
+                  </SelectItem>
+                  <SelectItem value='provider-z'>
+                    {t('microMarkets.providers.providerZ')}
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </FormField>
 
-            <FormField label='Config' description='Provider configuration'>
+            <FormField labelKey='microMarkets.formLabels.config' descriptionKey=''>
               <Textarea
                 value={formData.provider.providerConfig}
                 onChange={(e) => handleInputChange('provider', 'providerConfig', e.target.value)}
@@ -278,9 +289,11 @@ export function MicroMarketsForm({
 
         {/* VDI Section */}
         <div>
-          <h3 className='text-title-4xs font-semibold tracking-title mb-4 text-foreground'>VDI</h3>
+          <h3 className='text-title-4xs font-semibold tracking-title mb-4 text-foreground'>
+            {t('microMarkets.vdi')}
+          </h3>
           <div className='space-y-4'>
-            <FormField label='Last Market push' description='Date'>
+            <FormField labelKey='microMarkets.formLabels.lastMarketPush' descriptionKey=''>
               <Input
                 type='date'
                 value={formData.vdi.lastMarketPush}
@@ -289,7 +302,7 @@ export function MicroMarketsForm({
               />
             </FormField>
 
-            <FormField label='Last product push' description='Date'>
+            <FormField labelKey='microMarkets.formLabels.lastProductPush' descriptionKey=''>
               <Input
                 type='date'
                 value={formData.vdi.lastProductPush}
@@ -298,7 +311,7 @@ export function MicroMarketsForm({
               />
             </FormField>
 
-            <FormField label='Last sale received' description='Date'>
+            <FormField labelKey='microMarkets.formLabels.lastSaleReceived' descriptionKey=''>
               <Input
                 type='date'
                 value={formData.vdi.lastSaleReceived}
@@ -307,7 +320,7 @@ export function MicroMarketsForm({
               />
             </FormField>
 
-            <FormField label='Products in queue' description='Count'>
+            <FormField labelKey='microMarkets.formLabels.productsInQueue' descriptionKey=''>
               <div className='flex gap-2 items-center'>
                 <div className='w-1/2'>
                   <Input
@@ -323,7 +336,7 @@ export function MicroMarketsForm({
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button variant='outline' className='w-full'>
-                        Show queue
+                        {t('microMarkets.formLabels.showQueue')}
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>

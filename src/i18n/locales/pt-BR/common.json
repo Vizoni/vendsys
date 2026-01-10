@@ -1,0 +1,61 @@
+{
+  "buttons": {
+    "new": "Novo",
+    "delete": "Deletar",
+    "save": "Salvar"
+  },
+  "microMarkets": {
+    "region": "Região",
+    "includeInactive": "Incluir Inativos",
+    "marketNumber": "Cód. Mercado",
+    "account": "Conta",
+    "active": "Ativo",
+    "provider": "Provedor",
+    "marketDetails": "Detalhes do Mercado",
+    "info": "Informação",
+    "creditCard": "Cartão de Crédito",
+    "vdi": "VDI",
+    "noMarketSelected": "Selecione um item da tabela ou clique em \"Novo\" para criar um novo registro",
+    "locations": {
+      "selectPlaceholder": "Selecione a região",
+      "north": "Norte",
+      "east": "Leste",
+      "west": "Oeste",
+      "south": "Sul"
+    },
+    "providers": {
+      "selectPlaceholder": "Selecione o provedor",
+      "providerX": "Provedor X",
+      "providerY": "Provedor Y",
+      "providerZ": "Provedor Z"
+    },
+    "formLabels": {
+      "active": "Ativo",
+      "marketNumber": "Cód. Mercado",
+      "mgmtNumber": "Cód. Gerenciamento",
+      "account": "Conta",
+      "location": "Localização",
+      "creditCardDollar": "Cartão Crédito $",
+      "creditCardPercent": "Cartão Crédito %",
+      "applyFee": "Aplicar taxa",
+      "priceTags": "Tags de Preço",
+      "provider": "Provedor",
+      "config": "Configuração",
+      "lastMarketPush": "Último lançamento do mercado",
+      "lastProductPush": "Último lançamento do produto",
+      "lastSaleReceived": "Última venda recebida",
+      "productsInQueue": "Produtos na fila",
+      "showQueue": "Mostrar fila"
+    }
+  },
+  "assets": {
+    "title": "Ativos",
+    "assetNumber": "Cód. Ativo",
+    "kioskId": "Cód. Quiosque",
+    "serialNumber": "Cód. Série",
+    "category": "Categoria",
+    "model": "Modelo",
+    "isCash": "É Dinheiro",
+    "noAssetsFound": "Nenhum ativo registrado para este mercado"
+  }
+}

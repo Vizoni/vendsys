@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Checkbox } from './ui/checkbox';
 
 export type MicroMarketRow = {
@@ -21,6 +22,7 @@ export function MicroMarketsTable({
   onActiveChange,
   onRowClick,
 }: MicroMarketsTableProps) {
+  const { t } = useTranslation();
   const handleCheckboxChange = (id: string, checked: boolean) => {
     onActiveChange?.(id, checked);
   };
@@ -34,10 +36,18 @@ export function MicroMarketsTable({
       <table className='w-full border-collapse'>
         <thead>
           <tr className='border-b border-border'>
-            <th className='text-left text-body-md font-semibold py-3 px-4'>Market #</th>
-            <th className='text-left text-body-md font-semibold py-3 px-4'>Account</th>
-            <th className='text-left text-body-md font-semibold py-3 px-4'>Active</th>
-            <th className='text-left text-body-md font-semibold py-3 px-4'>Provider</th>
+            <th className='text-left text-body-md font-semibold py-3 px-4'>
+              {t('microMarkets.marketNumber')}
+            </th>
+            <th className='text-left text-body-md font-semibold py-3 px-4'>
+              {t('microMarkets.account')}
+            </th>
+            <th className='text-left text-body-md font-semibold py-3 px-4'>
+              {t('microMarkets.active')}
+            </th>
+            <th className='text-left text-body-md font-semibold py-3 px-4'>
+              {t('microMarkets.provider')}
+            </th>
           </tr>
         </thead>
         <tbody>

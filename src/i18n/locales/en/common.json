@@ -5,7 +5,6 @@
     "save": "Save"
   },
   "microMarkets": {
-    "title": "Micro Markets",
     "region": "Region",
     "includeInactive": "Include Inactive",
     "marketNumber": "Market #",
@@ -15,9 +14,39 @@
     "marketDetails": "Market Details",
     "info": "Info",
     "creditCard": "Credit Card",
-    "provider": "Provider",
     "vdi": "VDI",
-    "noMarketSelected": "Select an item from the table or click \"New\" to create a new record"
+    "noMarketSelected": "Select an item from the table or click \"New\" to create a new record",
+    "locations": {
+      "selectPlaceholder": "Select location",
+      "north": "North",
+      "east": "East",
+      "west": "West",
+      "south": "South"
+    },
+    "providers": {
+      "selectPlaceholder": "Select provider",
+      "providerX": "Provider X",
+      "providerY": "Provider Y",
+      "providerZ": "Provider Z"
+    },
+    "formLabels": {
+      "active": "Active",
+      "marketNumber": "Market Number",
+      "mgmtNumber": "Mgmt Number",
+      "account": "Account",
+      "location": "Location",
+      "creditCardDollar": "Credit Card $",
+      "creditCardPercent": "Credit Card %",
+      "applyFee": "Apply fee",
+      "priceTags": "Price Tags",
+      "provider": "Provider",
+      "config": "Config",
+      "lastMarketPush": "Last Market push",
+      "lastProductPush": "Last product push",
+      "lastSaleReceived": "Last sale received",
+      "productsInQueue": "Products in queue",
+      "showQueue": "Show queue"
+    }
   },
   "assets": {
     "title": "Assets",

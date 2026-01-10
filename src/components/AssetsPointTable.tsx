@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { type AssetPointRow } from '../data/MicroMarketsData';
 import { Checkbox } from './ui/checkbox';
 
@@ -8,10 +9,11 @@ interface AssetsPointTableProps {
 }
 
 export function AssetsPointTable({ data, selectedId, onRowClick }: AssetsPointTableProps) {
+  const { t } = useTranslation();
   if (data.length === 0) {
     return (
       <div className='text-center py-8 text-muted-foreground text-body-sm'>
-        Nenhum ativo registrado para este mercado
+        {t('assets.noAssetsFound')}
       </div>
     );
   }
@@ -21,13 +23,25 @@ export function AssetsPointTable({ data, selectedId, onRowClick }: AssetsPointTa
       <table className='w-full border-collapse'>
         <thead>
           <tr className='border-b border-border'>
-            <th className='text-left text-body-md font-semibold py-3 px-4'>Asset #</th>
-            <th className='text-left text-body-md font-semibold py-3 px-4'>Kiosk Id</th>
-            <th className='text-left text-body-md font-semibold py-3 px-4'>Serial #</th>
-            <th className='text-left text-body-md font-semibold py-3 px-4'>Category</th>
-            <th className='text-left text-body-md font-semibold py-3 px-4'>Model</th>
-            <th className='text-center text-body-md font-semibold py-3 px-4'>Active</th>
-            <th className='text-center text-body-md font-semibold py-3 px-4'>Is Cash</th>
+            <th className='text-left text-body-md font-semibold py-3 px-4'>
+              {t('assets.assetNumber')}
+            </th>
+            <th className='text-left text-body-md font-semibold py-3 px-4'>
+              {t('assets.kioskId')}
+            </th>
+            <th className='text-left text-body-md font-semibold py-3 px-4'>
+              {t('assets.serialNumber')}
+            </th>
+            <th className='text-left text-body-md font-semibold py-3 px-4'>
+              {t('assets.category')}
+            </th>
+            <th className='text-left text-body-md font-semibold py-3 px-4'>{t('assets.model')}</th>
+            <th className='text-center text-body-md font-semibold py-3 px-4'>
+              {t('microMarkets.active')}
+            </th>
+            <th className='text-center text-body-md font-semibold py-3 px-4'>
+              {t('assets.isCash')}
+            </th>
           </tr>
         </thead>
         <tbody>
