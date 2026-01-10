@@ -1,5 +1,6 @@
 import './App.css';
 import { useState } from 'react';
+import { PlusIcon, TrashIcon, CheckIcon } from '@heroicons/react/24/outline';
 import { Button } from './components/ui/button';
 import { MicroMarketsView } from './components/MicroMarketsView';
 import { MicroMarketsForm } from './components/MicroMarketsForm';
@@ -30,11 +31,16 @@ function App() {
   return (
     <>
       <section className='flex gap-4 p-4'>
-        <Button variant='ghost' onClick={handleOnClickNewButton}>
+        <Button variant='outline' onClick={handleOnClickNewButton}>
+          <PlusIcon className='size-5' />
           New
         </Button>
-        <Button variant='ghost'>Delete</Button>
-        <Button variant='default' disabled={!hasFormChanges} onClick={handleOnClickSaveButton}>
+        <Button variant='outline' disabled={!selectedMarketDetails}>
+          <TrashIcon className='size-5' />
+          Delete
+        </Button>
+        <Button variant='save' disabled={!hasFormChanges} onClick={handleOnClickSaveButton}>
+          <CheckIcon className='size-5' />
           Save
         </Button>
       </section>
