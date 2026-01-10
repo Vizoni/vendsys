@@ -1,0 +1,48 @@
+/* 
+  Hurme Geometric Sans 3 - Design System Fonts
+  Note: Add .woff2 and .woff files to /src/assets/fonts/hurme-geometric-sans-3/
+*/
+
+@font-face {
+  font-family: 'Hurme Geometric Sans 3';
+  src: url('./hurme-geometric-sans-3/hurme-geometric-sans-3-light.woff2')
+      format('woff2'),
+    url('./hurme-geometric-sans-3/hurme-geometric-sans-3-light.woff')
+      format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hurme Geometric Sans 3';
+  src: url('./hurme-geometric-sans-3/hurme-geometric-sans-3-regular.woff2')
+      format('woff2'),
+    url('./hurme-geometric-sans-3/hurme-geometric-sans-3-regular.woff')
+      format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hurme Geometric Sans 3';
+  src: url('./hurme-geometric-sans-3/hurme-geometric-sans-3-semibold.woff2')
+      format('woff2'),
+    url('./hurme-geometric-sans-3/hurme-geometric-sans-3-semibold.woff')
+      format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hurme Geometric Sans 3';
+  src: url('./hurme-geometric-sans-3/hurme-geometric-sans-3-bold.woff2')
+      format('woff2'),
+    url('./hurme-geometric-sans-3/hurme-geometric-sans-3-bold.woff')
+      format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

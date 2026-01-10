@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Field, FieldGroup, FieldLegend, FieldSet, FieldLabel } from './ui/field';
+import { Field, FieldGroup, FieldSet, FieldLabel } from './ui/field';
 import { Checkbox } from './ui/checkbox';
 import { MicroMarketsTable, type MicroMarketRow } from './MicroMarketsTable';
 import {
@@ -33,7 +33,7 @@ export function MicroMarketsView({ onMarketDetailsChange }: MicroMarketsViewProp
     <>
       <section className='gap-4 p-4 flex flex-row items-center'>
         <div className='flex flex-row items-center gap-2'>
-          <FieldLabel htmlFor='region'>Region</FieldLabel>
+          <FieldLabel htmlFor='region' className='text-body-sm'>Region</FieldLabel>
           <Select defaultValue=''>
             <SelectTrigger id='region' className='w-48'>
               <SelectValue placeholder='Choose region' />
@@ -47,7 +47,7 @@ export function MicroMarketsView({ onMarketDetailsChange }: MicroMarketsViewProp
           </Select>
         </div>
         <FieldSet className='flex flex-row items-center gap-2 whitespace-nowrap'>
-          <FieldLabel htmlFor='include-inactive' className='whitespace-nowrap'>
+          <FieldLabel htmlFor='include-inactive' className='whitespace-nowrap text-body-sm'>
             Include Inactive
           </FieldLabel>
           <FieldGroup>

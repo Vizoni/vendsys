@@ -34,10 +34,10 @@ export function MicroMarketsTable({
       <table className='w-full border-collapse'>
         <thead>
           <tr className='border-b border-border'>
-            <th className='text-left font-semibold py-3 px-4'>Market #</th>
-            <th className='text-left font-semibold py-3 px-4'>Account</th>
-            <th className='text-left font-semibold py-3 px-4'>Active</th>
-            <th className='text-left font-semibold py-3 px-4'>Provider</th>
+            <th className='text-left text-body-md font-semibold py-3 px-4'>Market #</th>
+            <th className='text-left text-body-md font-semibold py-3 px-4'>Account</th>
+            <th className='text-left text-body-md font-semibold py-3 px-4'>Active</th>
+            <th className='text-left text-body-md font-semibold py-3 px-4'>Provider</th>
           </tr>
         </thead>
         <tbody>
@@ -49,15 +49,15 @@ export function MicroMarketsTable({
                 selectedId === row.id ? 'bg-primary/10 hover:bg-primary/15' : 'hover:bg-muted/50'
               }`}
             >
-              <td className='py-3 px-4'>{row.marketNumber}</td>
-              <td className='py-3 px-4'>{row.account}</td>
+              <td className='py-3 px-4 text-body-sm'>{row.marketNumber}</td>
+              <td className='py-3 px-4 text-body-sm'>{row.account}</td>
               <td className='py-3 px-4'>
                 <Checkbox
                   checked={row.active}
                   onCheckedChange={(checked) => handleCheckboxChange(row.id, checked as boolean)}
                 />
               </td>
-              <td className='py-3 px-4'>{row.provider}</td>
+              <td className='py-3 px-4 text-body-sm'>{row.provider}</td>
             </tr>
           ))}
         </tbody>

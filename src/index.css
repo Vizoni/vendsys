@@ -1,10 +1,11 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@import './assets/fonts/fonts.css';
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Hurme Geometric Sans 3', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
