@@ -117,7 +117,7 @@ export function MicroMarketsForm({
 
   return (
     <div className='bg-card border border-border rounded-lg p-6 min-h-[calc(100vh-200px)] overflow-y-auto'>
-      <h2 className='text-title-3xs font-bold tracking-title mb-6'>Market Details</h2>
+      <h2 className='text-title-3xs font-extrabold tracking-title mb-6'>Market Details</h2>
 
       <div className='grid grid-cols-2 gap-8'>
         {/* Info Section */}
@@ -182,7 +182,9 @@ export function MicroMarketsForm({
 
         {/* Credit Card Section */}
         <div>
-          <h3 className='text-title-4xs font-semibold tracking-title mb-4 text-foreground'>Credit Card</h3>
+          <h3 className='text-title-4xs font-semibold tracking-title mb-4 text-foreground'>
+            Credit Card
+          </h3>
           <div className='space-y-4'>
             <FormField label='Credit Card $' description='Dollar amount'>
               <Input
@@ -242,7 +244,9 @@ export function MicroMarketsForm({
 
         {/* Provider Section */}
         <div>
-          <h3 className='text-title-4xs font-semibold tracking-title mb-4 text-foreground'>Provider</h3>
+          <h3 className='text-title-4xs font-semibold tracking-title mb-4 text-foreground'>
+            Provider
+          </h3>
           <div className='space-y-4'>
             <FormField label='Provider' description='Service provider'>
               <Select

@@ -33,7 +33,9 @@ export function MicroMarketsView({ onMarketDetailsChange }: MicroMarketsViewProp
     <>
       <section className='gap-4 p-4 flex flex-row items-center'>
         <div className='flex flex-row items-center gap-2'>
-          <FieldLabel htmlFor='region' className='text-body-sm'>Region</FieldLabel>
+          <FieldLabel htmlFor='region' className='text-body-sm'>
+            Region
+          </FieldLabel>
           <Select defaultValue=''>
             <SelectTrigger id='region' className='w-48'>
               <SelectValue placeholder='Choose region' />

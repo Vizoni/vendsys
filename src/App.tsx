@@ -56,7 +56,7 @@ function App() {
           />
           {selectedMarketDetails && (
             <div className='bg-card border border-border rounded-lg p-6'>
-              <h3 className='text-base font-semibold mb-4 text-foreground'>Assets</h3>
+              <h3 className='text-base font-extrabold mb-4 text-foreground'>Assets</h3>
               <AssetsPointTable
                 data={mockAssetPointsTableData.filter((asset) =>
                   asset.kioskId.startsWith(selectedMarketDetails.marketNumber)
