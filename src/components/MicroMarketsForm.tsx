@@ -73,7 +73,6 @@ export function MicroMarketsForm({
   const { t } = useTranslation();
   const [formData, setFormData] = useState<MicroMarketDetails>(emptyFormData);
 
-  // Sincronizar dados quando data muda (item selecionado na tabela)
   useEffect(() => {
     if (data) {
       setFormData(data);
@@ -88,14 +87,12 @@ export function MicroMarketsForm({
     value: unknown
   ) => {
     setFormData((prev) => {
-      // Se field é null, significa que é uma propriedade de nível superior (como isActive ou marketNumber)
       if (field === null) {
         return {
           ...prev,
           [section]: value,
         };
       }
-      // Senão, é uma propriedade nested
       return {
         ...prev,
         [section]: {

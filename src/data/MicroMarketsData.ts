@@ -1,4 +1,3 @@
-// Dados da tabela - simula resposta de uma API que lista os mercados
 export type MicroMarketRow = {
   id: string;
   marketNumber: string;
@@ -29,13 +28,12 @@ export type MicroMarketProvider = {
 };
 
 export type MicroMarketVDI = {
-  lastMarketPush: string; // ISO date
-  lastProductPush: string; // ISO date
-  lastSaleReceived: string; // ISO date
+  lastMarketPush: string;
+  lastProductPush: string;
+  lastSaleReceived: string;
   productsInQueue: number;
 };
 
-// Dados detalhados do formulário - simula resposta de uma API que traz detalhes de um mercado
 export type MicroMarketDetails = {
   id: string;
   marketNumber: string;
@@ -46,7 +44,6 @@ export type MicroMarketDetails = {
   vdi: MicroMarketVDI;
 };
 
-// Mock dos dados da tabela (como se viesse de uma API LIST)
 export const mockMicroMarketsTableData: MicroMarketRow[] = [
   {
     id: '1',
@@ -78,7 +75,6 @@ export const mockMicroMarketsTableData: MicroMarketRow[] = [
   },
 ];
 
-// Mock dos dados detalhados do formulário (como se viesse de uma API GET /:id)
 export const mockMicroMarketsDetailedData: MicroMarketDetails[] = [
   {
     id: '1',
@@ -196,7 +192,6 @@ export const mockMicroMarketsDetailedData: MicroMarketDetails[] = [
 
 /* ========== ASSET POINTS DATA ========== */
 
-// Dados da tabela de assets - simula resposta de uma API que lista os ativos de um mercado
 export type AssetPointRow = {
   id: string;
   assetNumber: string;
@@ -208,7 +203,6 @@ export type AssetPointRow = {
   isCash: boolean;
 };
 
-// Mock dos dados da tabela de assets agrupados por market
 export const mockAssetPointsTableData: AssetPointRow[] = [
   {
     id: 'AP-1-001',
@@ -294,14 +288,12 @@ export const mockAssetPointsTableData: AssetPointRow[] = [
 
 /* ========== ASSET LIST DATA ========== */
 
-// Dados da lista de assets disponíveis para seleção
 export type AssetListOption = {
   id: string;
   assetNumber: string;
   model: string;
 };
 
-// Mock dos dados da lista de assets
 export const mockAssetListOptions: AssetListOption[] = [
   {
     id: 'AP-1-001',

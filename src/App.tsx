@@ -25,7 +25,6 @@ function App() {
   const [selectedAssetId, setSelectedAssetId] = useState<string>();
 
   const handleOnClickNewButton = () => {
-    // Estado "Novo registro": limpa seleção e ativa modo novo
     setSelectedMarketDetails(undefined);
     setHasFormChanges(false);
     setIsAddingMarket(true);
@@ -33,8 +32,7 @@ function App() {
   };
 
   const handleOnClickSaveButton = () => {
-    // TODO: Implementar lógica de save
-    console.log('Salvando...');
+    alert('Not implemented yet');
   };
 
   return (
