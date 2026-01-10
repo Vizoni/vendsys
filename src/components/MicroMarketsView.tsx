@@ -23,7 +23,7 @@ export function MicroMarketsView({ onMarketDetailsChange }: MicroMarketsViewProp
 
   const handleRowClick = (id: string) => {
     setSelectedMarketId(id);
-    const details = mockMicroMarketsDetailedData[id];
+    const details = mockMicroMarketsDetailedData.find((m) => m.id === id);
     if (details) {
       onMarketDetailsChange?.(details);
     }
@@ -31,11 +31,11 @@ export function MicroMarketsView({ onMarketDetailsChange }: MicroMarketsViewProp
 
   return (
     <>
-      <section className='p-4 gap-4 flex flex-row'>
-        <Field className='flex-row items-center'>
+      <section className='gap-4 p-4 flex flex-row items-center'>
+        <div className='flex flex-row items-center gap-2'>
           <FieldLabel htmlFor='region'>Region</FieldLabel>
           <Select defaultValue=''>
-            <SelectTrigger id='region'>
+            <SelectTrigger id='region' className='w-48'>
               <SelectValue placeholder='Choose region' />
             </SelectTrigger>
             <SelectContent>
@@ -45,9 +45,11 @@ export function MicroMarketsView({ onMarketDetailsChange }: MicroMarketsViewProp
               <SelectItem value='south'>South</SelectItem>
             </SelectContent>
           </Select>
-        </Field>
-        <FieldSet className='flex flex-row'>
-          <FieldLegend>Include Inactive</FieldLegend>
+        </div>
+        <FieldSet className='flex flex-row items-center gap-2 whitespace-nowrap'>
+          <FieldLabel htmlFor='include-inactive' className='whitespace-nowrap'>
+            Include Inactive
+          </FieldLabel>
           <FieldGroup>
             <Field orientation='horizontal'>
               <Checkbox id='include-inactive' defaultChecked />

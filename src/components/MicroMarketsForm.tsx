@@ -34,6 +34,7 @@ interface MicroMarketsFormProps {
 
 const emptyFormData: MicroMarketDetails = {
   id: '',
+  marketNumber: '',
   isActive: false,
   info: {
     marketNumber: '',
@@ -81,17 +82,18 @@ export function MicroMarketsForm({
     value: unknown
   ) => {
     setFormData((prev) => {
-      // Se field é null, significa que é uma propriedade de nível superior (como isActive)
+      // Se field é null, significa que é uma propriedade de nível superior (como isActive ou marketNumber)
       if (field === null) {
         return {
           ...prev,
           [section]: value,
         };
       }
+      // Senão, é uma propriedade nested
       return {
         ...prev,
         [section]: {
-          ...prev[section as keyof Omit<MicroMarketDetails, 'id' | 'isActive'>],
+          ...prev[section as keyof Omit<MicroMarketDetails, 'id' | 'isActive' | 'marketNumber'>],
           [field]: value,
         },
       };

@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { Button } from './components/ui/button';
 import { MicroMarketsView } from './components/MicroMarketsView';
 import { MicroMarketsForm } from './components/MicroMarketsForm';
-import { type MicroMarketDetails } from './data/MicroMarketsData';
+import { AssetsPointTable } from './components/AssetsPointTable';
+import { type MicroMarketDetails, mockAssetPointsTableData } from './data/MicroMarketsData';
 
 function App() {
   const [selectedMarketDetails, setSelectedMarketDetails] = useState<
@@ -11,12 +12,14 @@ function App() {
   >();
   const [hasFormChanges, setHasFormChanges] = useState(false);
   const [isAddingMarket, setIsAddingMarket] = useState(false);
+  const [selectedAssetId, setSelectedAssetId] = useState<string>();
 
   const handleOnClickNewButton = () => {
     // Estado "Novo registro": limpa seleção e ativa modo novo
     setSelectedMarketDetails(undefined);
     setHasFormChanges(false);
     setIsAddingMarket(true);
+    setSelectedAssetId(undefined);
   };
 
   const handleOnClickSaveButton = () => {
@@ -41,15 +44,28 @@ function App() {
             onMarketDetailsChange={(details) => {
               setSelectedMarketDetails(details);
               setIsAddingMarket(false);
+              setSelectedAssetId(undefined);
             }}
           />
         </div>
-        <div className='w-1/2'>
+        <div className='w-1/2 flex flex-col gap-4'>
           <MicroMarketsForm
             data={selectedMarketDetails}
             isAddingMarket={isAddingMarket}
             onFormChange={setHasFormChanges}
           />
+          {selectedMarketDetails && (
+            <div className='bg-card border border-border rounded-lg p-6'>
+              <h3 className='text-base font-semibold mb-4 text-foreground'>Assets</h3>
+              <AssetsPointTable
+                data={mockAssetPointsTableData.filter((asset) =>
+                  asset.kioskId.startsWith(selectedMarketDetails.marketNumber)
+                )}
+                selectedId={selectedAssetId}
+                onRowClick={setSelectedAssetId}
+              />
+            </div>
+          )}
         </div>
       </section>
     </>

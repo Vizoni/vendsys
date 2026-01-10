@@ -38,6 +38,7 @@ export type MicroMarketVDI = {
 // Dados detalhados do formulário - simula resposta de uma API que traz detalhes de um mercado
 export type MicroMarketDetails = {
   id: string;
+  marketNumber: string;
   isActive: boolean;
   info: MicroMarketInfo;
   creditCard: MicroMarketCreditCard;
@@ -78,9 +79,10 @@ export const mockMicroMarketsTableData: MicroMarketRow[] = [
 ];
 
 // Mock dos dados detalhados do formulário (como se viesse de uma API GET /:id)
-export const mockMicroMarketsDetailedData: Record<string, MicroMarketDetails> = {
-  '1': {
+export const mockMicroMarketsDetailedData: MicroMarketDetails[] = [
+  {
     id: '1',
+    marketNumber: 'MKT-001',
     isActive: true,
     info: {
       marketNumber: 'MKT-001',
@@ -106,8 +108,9 @@ export const mockMicroMarketsDetailedData: Record<string, MicroMarketDetails> = 
       productsInQueue: 15,
     },
   },
-  '2': {
+  {
     id: '2',
+    marketNumber: 'MKT-002',
     isActive: false,
     info: {
       marketNumber: 'MKT-002',
@@ -133,8 +136,9 @@ export const mockMicroMarketsDetailedData: Record<string, MicroMarketDetails> = 
       productsInQueue: 8,
     },
   },
-  '3': {
+  {
     id: '3',
+    marketNumber: 'MKT-003',
     isActive: true,
     info: {
       marketNumber: 'MKT-003',
@@ -160,8 +164,9 @@ export const mockMicroMarketsDetailedData: Record<string, MicroMarketDetails> = 
       productsInQueue: 32,
     },
   },
-  '4': {
+  {
     id: '4',
+    marketNumber: 'MKT-004',
     isActive: true,
     info: {
       marketNumber: 'MKT-004',
@@ -187,4 +192,102 @@ export const mockMicroMarketsDetailedData: Record<string, MicroMarketDetails> = 
       productsInQueue: 5,
     },
   },
+];
+
+/* ========== ASSET POINTS DATA ========== */
+
+// Dados da tabela de assets - simula resposta de uma API que lista os ativos de um mercado
+export type AssetPointRow = {
+  id: string;
+  assetNumber: string;
+  kioskId: string;
+  serialNumber: string;
+  category: string;
+  model: string;
+  active: boolean;
+  isCash: boolean;
 };
+
+// Mock dos dados da tabela de assets agrupados por market
+export const mockAssetPointsTableData: AssetPointRow[] = [
+  {
+    id: 'AP-1-001',
+    assetNumber: 'AST-001',
+    kioskId: 'MKT-001-KIOSK-001',
+    serialNumber: 'SN-20250001',
+    category: 'Vending Machine',
+    model: 'VM-3000',
+    active: true,
+    isCash: true,
+  },
+  {
+    id: 'AP-1-002',
+    assetNumber: 'AST-002',
+    kioskId: 'MKT-001-KIOSK-002',
+    serialNumber: 'SN-20250002',
+    category: 'Vending Machine',
+    model: 'VM-3000',
+    active: true,
+    isCash: false,
+  },
+  {
+    id: 'AP-1-003',
+    assetNumber: 'AST-003',
+    kioskId: 'MKT-001-KIOSK-003',
+    serialNumber: 'SN-20250003',
+    category: 'Payment Terminal',
+    model: 'PT-500',
+    active: true,
+    isCash: false,
+  },
+  {
+    id: 'AP-3-001',
+    assetNumber: 'AST-006',
+    kioskId: 'MKT-003-KIOSK-001',
+    serialNumber: 'SN-20250006',
+    category: 'Vending Machine',
+    model: 'VM-3000',
+    active: true,
+    isCash: true,
+  },
+  {
+    id: 'AP-3-002',
+    assetNumber: 'AST-007',
+    kioskId: 'MKT-003-KIOSK-002',
+    serialNumber: 'SN-20250007',
+    category: 'Vending Machine',
+    model: 'VM-3000',
+    active: true,
+    isCash: false,
+  },
+  {
+    id: 'AP-3-003',
+    assetNumber: 'AST-008',
+    kioskId: 'MKT-003-KIOSK-003',
+    serialNumber: 'SN-20250008',
+    category: 'Payment Terminal',
+    model: 'PT-500',
+    active: true,
+    isCash: false,
+  },
+  {
+    id: 'AP-3-004',
+    assetNumber: 'AST-009',
+    kioskId: 'MKT-003-KIOSK-004',
+    serialNumber: 'SN-20250009',
+    category: 'Cooler',
+    model: 'COOLER-100',
+    active: true,
+    isCash: false,
+  },
+  {
+    id: 'AP-4-001',
+    assetNumber: 'AST-010',
+    kioskId: 'MKT-004-KIOSK-001',
+    serialNumber: 'SN-20250010',
+    category: 'Vending Machine',
+    model: 'VM-3000',
+    active: true,
+    isCash: true,
+  },
+];
