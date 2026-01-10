@@ -38,6 +38,7 @@ export type MicroMarketVDI = {
 // Dados detalhados do formulário - simula resposta de uma API que traz detalhes de um mercado
 export type MicroMarketDetails = {
   id: string;
+  isActive: boolean;
   info: MicroMarketInfo;
   creditCard: MicroMarketCreditCard;
   provider: MicroMarketProvider;
@@ -80,6 +81,7 @@ export const mockMicroMarketsTableData: MicroMarketRow[] = [
 export const mockMicroMarketsDetailedData: Record<string, MicroMarketDetails> = {
   '1': {
     id: '1',
+    isActive: true,
     info: {
       marketNumber: 'MKT-001',
       mgmtNumber: 'MGMT-001',
@@ -106,6 +108,7 @@ export const mockMicroMarketsDetailedData: Record<string, MicroMarketDetails> = 
   },
   '2': {
     id: '2',
+    isActive: false,
     info: {
       marketNumber: 'MKT-002',
       mgmtNumber: 'MGMT-002',
@@ -132,6 +135,7 @@ export const mockMicroMarketsDetailedData: Record<string, MicroMarketDetails> = 
   },
   '3': {
     id: '3',
+    isActive: true,
     info: {
       marketNumber: 'MKT-003',
       mgmtNumber: 'MGMT-003',
@@ -158,6 +162,7 @@ export const mockMicroMarketsDetailedData: Record<string, MicroMarketDetails> = 
   },
   '4': {
     id: '4',
+    isActive: true,
     info: {
       marketNumber: 'MKT-004',
       mgmtNumber: 'MGMT-004',

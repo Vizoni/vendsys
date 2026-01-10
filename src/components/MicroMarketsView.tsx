@@ -3,13 +3,30 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Field, FieldGroup, FieldLegend, FieldSet, FieldLabel } from './ui/field';
 import { Checkbox } from './ui/checkbox';
 import { MicroMarketsTable, type MicroMarketRow } from './MicroMarketsTable';
-import { mockMicroMarketsTableData } from '../data/MicroMarketsData';
+import {
+  mockMicroMarketsTableData,
+  mockMicroMarketsDetailedData,
+  type MicroMarketDetails,
+} from '../data/MicroMarketsData';
 
-export function MicroMarketsView() {
+interface MicroMarketsViewProps {
+  onMarketDetailsChange?: (details: MicroMarketDetails | undefined) => void;
+}
+
+export function MicroMarketsView({ onMarketDetailsChange }: MicroMarketsViewProps) {
   const [tableData, setTableData] = useState<MicroMarketRow[]>(mockMicroMarketsTableData);
+  const [selectedMarketId, setSelectedMarketId] = useState<string>();
 
   const handleActiveChange = (id: string, active: boolean) => {
     setTableData((prevData) => prevData.map((row) => (row.id === id ? { ...row, active } : row)));
+  };
+
+  const handleRowClick = (id: string) => {
+    setSelectedMarketId(id);
+    const details = mockMicroMarketsDetailedData[id];
+    if (details) {
+      onMarketDetailsChange?.(details);
+    }
   };
 
   return (
@@ -39,7 +56,12 @@ export function MicroMarketsView() {
         </FieldSet>
       </section>
       <section className='p-4'>
-        <MicroMarketsTable data={tableData} onActiveChange={handleActiveChange} />
+        <MicroMarketsTable
+          data={tableData}
+          selectedId={selectedMarketId}
+          onActiveChange={handleActiveChange}
+          onRowClick={handleRowClick}
+        />
       </section>
     </>
   );

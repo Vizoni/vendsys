@@ -10,12 +10,23 @@ export type MicroMarketRow = {
 
 type MicroMarketsTableProps = {
   data: MicroMarketRow[];
+  selectedId?: string;
   onActiveChange?: (id: string, active: boolean) => void;
+  onRowClick?: (id: string) => void;
 };
 
-export function MicroMarketsTable({ data, onActiveChange }: MicroMarketsTableProps) {
+export function MicroMarketsTable({
+  data,
+  selectedId,
+  onActiveChange,
+  onRowClick,
+}: MicroMarketsTableProps) {
   const handleCheckboxChange = (id: string, checked: boolean) => {
     onActiveChange?.(id, checked);
+  };
+
+  const handleRowClick = (id: string) => {
+    onRowClick?.(id);
   };
 
   return (
@@ -31,7 +42,13 @@ export function MicroMarketsTable({ data, onActiveChange }: MicroMarketsTablePro
         </thead>
         <tbody>
           {data.map((row) => (
-            <tr key={row.id} className='border-b border-border hover:bg-muted/50 transition-colors'>
+            <tr
+              key={row.id}
+              onClick={() => handleRowClick(row.id)}
+              className={`cursor-pointer border-b border-border transition-colors ${
+                selectedId === row.id ? 'bg-primary/10 hover:bg-primary/15' : 'hover:bg-muted/50'
+              }`}
+            >
               <td className='py-3 px-4'>{row.marketNumber}</td>
               <td className='py-3 px-4'>{row.account}</td>
               <td className='py-3 px-4'>
