@@ -1,18 +1,11 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Field, FieldGroup, FieldSet, FieldLabel } from './ui/field';
-import { Checkbox } from './ui/checkbox';
-import { MicroMarketsTable, type MicroMarketRow } from './MicroMarketsTable';
-import {
-  mockMicroMarketsTableData,
-  mockMicroMarketsDetailedData,
-  type MicroMarketDetails,
-} from '../data/MicroMarketsData';
-
-interface MicroMarketsViewProps {
-  onMarketDetailsChange?: (details: MicroMarketDetails | undefined) => void;
-}
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { Field, FieldGroup, FieldSet } from '../ui/field';
+import { Checkbox } from '../ui/checkbox';
+import { MicroMarketsTable, type MicroMarketRow } from '../MicroMarketsTable';
+import { type MicroMarketsViewProps } from './MicroMarketsView.types';
+import { mockMicroMarketsTableData, mockMicroMarketsDetailedData } from '@/data/MicroMarketsData';
 
 export function MicroMarketsView({ onMarketDetailsChange }: MicroMarketsViewProps) {
   const { t } = useTranslation();

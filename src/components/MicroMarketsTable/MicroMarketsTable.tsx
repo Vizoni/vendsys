@@ -1,20 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { Checkbox } from './ui/checkbox';
-
-export type MicroMarketRow = {
-  id: string;
-  marketNumber: string;
-  account: string;
-  active: boolean;
-  provider: string;
-};
-
-type MicroMarketsTableProps = {
-  data: MicroMarketRow[];
-  selectedId?: string;
-  onActiveChange?: (id: string, active: boolean) => void;
-  onRowClick?: (id: string) => void;
-};
+import { Checkbox } from '../ui/checkbox';
+import { MicroMarketsTableHeader } from './MicroMarketsTableHeader';
+import { type MicroMarketsTableProps } from './MicroMarketsTable.types';
 
 export function MicroMarketsTable({
   data,
@@ -34,22 +21,7 @@ export function MicroMarketsTable({
   return (
     <div className='overflow-x-auto'>
       <table className='w-full border-collapse' role='grid' aria-label='Micro markets list'>
-        <thead>
-          <tr className='border-b border-border'>
-            <th className='text-left text-body-md font-semibold py-3 px-4' scope='col'>
-              {t('microMarkets.marketNumber')}
-            </th>
-            <th className='text-left text-body-md font-semibold py-3 px-4' scope='col'>
-              {t('microMarkets.account')}
-            </th>
-            <th className='text-left text-body-md font-semibold py-3 px-4' scope='col'>
-              {t('microMarkets.active')}
-            </th>
-            <th className='text-left text-body-md font-semibold py-3 px-4' scope='col'>
-              {t('microMarkets.provider')}
-            </th>
-          </tr>
-        </thead>
+        <MicroMarketsTableHeader />
         <tbody>
           {data.map((row) => (
             <tr

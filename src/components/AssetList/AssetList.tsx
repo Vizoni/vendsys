@@ -1,13 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { type AssetListOption } from '../data/MicroMarketsData';
-import { FieldLabel } from './ui/field';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-
-interface AssetListProps {
-  assetOptions: AssetListOption[];
-  selectedAssetId?: string;
-  onAssetSelect?: (id: string) => void;
-}
+import { FieldLabel } from '../ui/field';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { type AssetListProps } from './AssetList.types';
 
 export function AssetList({ assetOptions, selectedAssetId, onAssetSelect }: AssetListProps) {
   const { t } = useTranslation();

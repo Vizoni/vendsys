@@ -1,20 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FieldLabel, FieldDescription } from './ui/field';
-import { Checkbox } from './ui/checkbox';
-import { Input } from './ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Textarea } from './ui/textarea';
-import { type MicroMarketDetails } from '../data/MicroMarketsData';
-import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
-import { Button } from './ui/button';
-
-interface FormFieldProps {
-  labelKey: string;
-  descriptionKey: string;
-  children: React.ReactNode;
-  fieldId?: string;
-}
+import { FieldLabel, FieldDescription } from '../ui/field';
+import { Checkbox } from '../ui/checkbox';
+import { Input } from '../ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { Textarea } from '../ui/textarea';
+import { type MicroMarketDetails } from '@/data/MicroMarketsData';
+import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
+import { Button } from '../ui/button';
+import { type FormFieldProps, type MicroMarketsFormProps } from './MicroMarketsForm.types';
+import { emptyFormData } from './MicroMarketsForm.constants';
 
 function FormField({ labelKey, descriptionKey, children, fieldId }: FormFieldProps) {
   const { t } = useTranslation();
@@ -30,40 +25,6 @@ function FormField({ labelKey, descriptionKey, children, fieldId }: FormFieldPro
     </div>
   );
 }
-
-interface MicroMarketsFormProps {
-  data?: MicroMarketDetails;
-  isAddingMarket?: boolean;
-  onFormChange?: (hasChanges: boolean) => void;
-}
-
-const emptyFormData: MicroMarketDetails = {
-  id: '',
-  marketNumber: '',
-  isActive: false,
-  info: {
-    marketNumber: '',
-    mgmtNumber: '',
-    account: '',
-    location: 'north',
-  },
-  creditCard: {
-    creditCardDollar: 0,
-    creditCardPercent: 0,
-    applyFeeToAccountTopUps: false,
-    hasPriceTags: false,
-  },
-  provider: {
-    provider: 'provider-x',
-    providerConfig: '',
-  },
-  vdi: {
-    lastMarketPush: '',
-    lastProductPush: '',
-    lastSaleReceived: '',
-    productsInQueue: 0,
-  },
-};
 
 export function MicroMarketsForm({
   data,

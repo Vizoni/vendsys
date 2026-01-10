@@ -57,10 +57,12 @@ npm run preview
 
 - Had to discover what VDI is in the vending machine/micro market context
   - With this I could understand the relaton between form and tables
-- Did not implement any form validation due time and because I don't know the business rules, what is required or not et cetera. That's why the form is not working.
 - Assumed "New" button clears the form so you can add a new market
 - Assumed "Delete" button would call an API that deletes the selected row
 - Assumed "Save" button update existing info or creates a new market, depending the context
+- Assumed every informaton **should** be showed in one page just as the original windows form.
+  - Could split the view in more tabs.
+- Did not implement any form validation due time and because I don't know the business rules, what is required or not et cetera. That's why the form is not working.
 
 ## Future Enhancements (if I had more time)
 
@@ -73,6 +75,8 @@ npm run preview
 - More localization languages
 - Advanced filtering and search
 - Unit tests with jest + react testing library
+- Break form into smaller components (Info, Credit Card, Provider, VDI)
+  - This would make future maintenance easier
 
 ## Language Switching
 

@@ -2,18 +2,18 @@ import './App.css';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PlusIcon, TrashIcon, CheckIcon } from '@heroicons/react/24/outline';
-import { Button } from './components/ui/button';
-import { LanguageSwitcher } from './components/LanguageSwitcher';
-import { MicroMarketsView } from './components/MicroMarketsView';
-import { MicroMarketsForm } from './components/MicroMarketsForm';
-import { AssetsPointTable } from './components/AssetsPointTable';
-import { AssetList } from './components/AssetList';
-import { Tooltip, TooltipTrigger, TooltipContent } from './components/ui/tooltip';
+import { Button } from 'components/ui/button';
+import { LanguageSwitcher } from 'components/LanguageSwitcher';
+import { MicroMarketsView } from 'components/MicroMarketsView';
+import { MicroMarketsForm } from 'components/MicroMarketsForm';
+import { AssetsPointTable } from 'components/AssetsPointTable';
+import { AssetList } from 'components/AssetList';
+import { Tooltip, TooltipTrigger, TooltipContent } from 'components/ui/tooltip';
 import {
   type MicroMarketDetails,
   mockAssetPointsTableData,
   mockAssetListOptions,
-} from './data/MicroMarketsData';
+} from '@/data/MicroMarketsData';
 
 function App() {
   const { t } = useTranslation();
@@ -69,7 +69,7 @@ function App() {
       <main className='flex flex-col xl:flex-row gap-4 p-4 flex-1'>
         <section className='w-full xl:w-1/2' aria-label='Markets list'>
           <MicroMarketsView
-            onMarketDetailsChange={(details) => {
+            onMarketDetailsChange={(details: MicroMarketDetails | undefined) => {
               setSelectedMarketDetails(details);
               setIsAddingMarket(false);
               setSelectedAssetId(undefined);
