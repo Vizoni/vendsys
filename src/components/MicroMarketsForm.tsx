@@ -128,7 +128,7 @@ export function MicroMarketsForm({
         {t('microMarkets.marketDetails')}
       </h2>
 
-      <fieldset disabled={isFormDisabled} className='grid grid-cols-2 gap-8'>
+      <fieldset disabled={isFormDisabled} className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
         <legend className='sr-only'>{t('microMarkets.marketDetails')}</legend>
         {/* Info Section */}
         <div>

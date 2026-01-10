@@ -62,8 +62,8 @@ function App() {
         </nav>
         <LanguageSwitcher />
       </header>
-      <main className='flex gap-4 p-4 flex-1'>
-        <section className='w-1/2' aria-label='Markets list'>
+      <main className='flex flex-col xl:flex-row gap-4 p-4 flex-1'>
+        <section className='w-full xl:w-1/2' aria-label='Markets list'>
           <MicroMarketsView
             onMarketDetailsChange={(details) => {
               setSelectedMarketDetails(details);
@@ -72,7 +72,7 @@ function App() {
             }}
           />
         </section>
-        <section className='w-1/2 flex flex-col gap-4' aria-label='Market details'>
+        <section className='w-full xl:w-1/2 flex flex-col gap-4' aria-label='Market details'>
           <MicroMarketsForm
             data={selectedMarketDetails}
             isAddingMarket={isAddingMarket}
