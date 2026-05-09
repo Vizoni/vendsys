@@ -11,6 +11,10 @@ jobs:
     # Garante que este workflow só rode para o Dependabot
     if: github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
+        # Adicione estas permissões específicas:
+    permissions:
+      pull-requests: write
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,9 +40,6 @@ jobs:
       # Se o build passou, fazemos o "deploy" automático para a branch de develop
       # Nota: Usamos o comando 'gh pr merge' para automerge se for minor ou devDep
       - name: Auto-merge to Develop
-        if: |
-          steps.metadata.outputs.update-type == 'version-update:semver-minor' ||
-          steps.metadata.outputs.dependency-group == 'dev-dependencies'
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
