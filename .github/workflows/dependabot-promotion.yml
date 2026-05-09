@@ -22,7 +22,7 @@ jobs:
 
       - name: Install & Build (Simulação)
         run: |
-          npm ci
+          yarn
           # Aqui rodariam seus testes e build:
           # npm run lint
           # npm test
