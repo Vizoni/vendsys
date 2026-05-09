@@ -1,0 +1,35 @@
+name: Dependabot CI
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  dependabot-validation:
+    # Filtro para garantir que esta Action só rode para o Dependabot [9]
+    if: github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependências
+        run: npm install
+
+      # Etapas de simulação (Comentadas para implementação futura)
+      # - name: Executar Lint
+      #   run: npm run lint # Validaria padrões de código [10]
+
+      # - name: Executar Testes
+      #   run: npm test # Validaria se a atualização quebrou algo [10]
+
+      # - name: Automerge para patches
+      #   if: success()
+      #   run: gh pr merge --auto --merge "$PR_URL" # Exemplo de merge automático [11]
+      #   env:
+      #     PR_URL: ${{github.event.pull_request.html_url}}
+      #     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
