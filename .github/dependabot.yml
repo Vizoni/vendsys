@@ -10,9 +10,15 @@ updates:
     schedule:
       interval: "weekly"
  # Configuração de agrupamento para reduzir o ruído
-    groups:
-      dev-dependencies:
-        dependency-type: "development" # Agrupa todas as devDependencies num único PR
-      minor-updates:
-        update-types:
-          - "minor" # Agrupa todas as atualizações 'minor' num único PR
+groups:
+  # Agrupa apenas o que é seguro (não quebra o código)
+  safe-dev-updates:
+    dependency-type: "development"
+    update-types:
+      - "minor"
+      - "patch"
+  # Majors ficam de fora deste grupo e abrirão PRs individuais (ou em grupo separado)
+  major-dev-updates:
+    dependency-type: "development"
+    update-types:
+      - "major"
