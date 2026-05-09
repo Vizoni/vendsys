@@ -9,3 +9,10 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+ # Configuração de agrupamento para reduzir o ruído
+    groups:
+      dev-dependencies:
+        dependency-type: "development" # Agrupa todas as devDependencies num único PR
+      minor-updates:
+        update-types:
+          - "minor" # Agrupa todas as atualizações 'minor' num único PR
