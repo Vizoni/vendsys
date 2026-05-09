@@ -2,16 +2,13 @@ name: Dependabot Promotion Flow
 
 on:
   pull_request:
-    branches: [ main ] # O PR original do Dependabot costuma mirar na main
+    branches: [ main ]
 
 jobs:
-  # --- ETAPA 1: VALIDAÇÃO E DEPLOY EM DEVELOP ---
   validate-and-dev:
     name: Build & Deploy to Develop
-    # Garante que este workflow só rode para o Dependabot
     if: github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
-        # Adicione estas permissões específicas:
     permissions:
       pull-requests: write
       contents: write
@@ -24,45 +21,44 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install & Build (Simulação)
+      - name: Install & Build
         run: |
-          yarn
-          # Aqui rodariam seus testes e build:
-          # npm run lint
-          # npm test
-          # npm run build
-      
-      # Coleta metadados do Dependabot (se é minor, patch, devDep, etc)
+          yarn install
+          # yarn test (Descomente quando tiver testes)
+
       - name: Dependabot Metadata
         id: metadata
         uses: dependabot/fetch-metadata@v2
 
-      # Se o build passou, fazemos o "deploy" automático para a branch de develop
-      # Nota: Usamos o comando 'gh pr merge' para automerge se for minor ou devDep
+      # AGORA COM FILTRO RÍGIDO: 
+      # Só faz automerge se for devDependencies E (minor OU patch).
+      # Se for 'dependencies' (produção) ou 'major', este step será pulado.
       - name: Auto-merge to Develop
+        if: >
+          steps.metadata.outputs.dependency-type == 'development' &&
+          (steps.metadata.outputs.update-type == 'version-update:semver-patch' || 
+           steps.metadata.outputs.update-type == 'version-update:semver-minor')
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-  # --- ETAPA 2: DEPLOY EM HOMOLOG (REQUER APROVAÇÃO) ---
   deploy-homolog:
     name: Deploy to Homologation
     needs: validate-and-dev
     runs-on: ubuntu-latest
-    # O 'environment' homolog deve estar configurado no GitHub com "Required Reviewers"
+    # ESSENCIAL: Configure "Required Reviewers" nas Settings do Repo para este Environment
     environment: homolog 
     steps:
       - name: Deploying to Homolog
-        run: echo "Executando scripts de deploy para o ambiente de HOMOLOG..."
+        run: echo "Aguardando aprovação humana para Homolog..."
 
-  # --- ETAPA 3: DEPLOY EM PRODUÇÃO (REQUER APROVAÇÃO) ---
   deploy-production:
-    name: Deploy to Production (Main)
+    name: Deploy to Production
     needs: deploy-homolog
     runs-on: ubuntu-latest
-    # O 'environment' production deve estar configurado no GitHub com aprovação do time
+    # ESSENCIAL: Configure "Required Reviewers" nas Settings do Repo para este Environment
     environment: production
     steps:
       - name: Deploying to Production
-        run: echo "Executando scripts de deploy final para PRODUÇÃO..."
+        run: echo "Aguardando aprovação humana para Produção..."
