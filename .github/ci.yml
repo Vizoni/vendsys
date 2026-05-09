@@ -1,0 +1,19 @@
+name: CI Básico
+on:
+  pull_request: # Gatilho para qualquer Pull Request [6]
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4 # Baixa o código do repositório [7]
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Define a versão do Node
+
+      - name: Instalar dependências
+        run: npm install # Garante que o projeto consegue ser instalado [8]
