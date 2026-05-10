@@ -4,15 +4,15 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    # O 'groups' DEVE estar dentro deste bloco de update
     groups:
-      dev-dependencies:
+      # Grupo que você já validou e funciona
+      safe-dev-updates:
         dependency-type: "development"
         update-types:
           - "minor"
           - "patch"
-      production-dependencies:
-        dependency-type: "production"
-        update-types:
-          - "minor"
-          - "patch"
+      
+      # NOVO: Produção e Majors ficam FORA do grupo automático
+      # Ao não estarem em um grupo, elas abrirão PRs individuais 
+      # que sua Action irá ignorar (não fará deploy)
+    versioning-strategy: increase # Mantém consistência no monorepo [7]
