@@ -3,11 +3,17 @@ name: Dependabot Promotion Flow
 on:
   pull_request:
     branches: [ main ]
+  workflow_dispatch: 
+    inputs:
+      pr_number:
+        description: 'Número do PR do Dependabot para validar manualmente'
+        required: false
 
 jobs:
   validate-and-dev:
     name: Build & Deploy to Develop
-    if: github.actor == 'dependabot[bot]'
+    # Agora o job roda se for o bot OU se você disparar manualmente
+    if: github.actor == 'dependabot[bot]' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -30,18 +36,11 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@v2
 
-      # AGORA COM FILTRO RÍGIDO: 
-      # Só faz automerge se for devDependencies E (minor OU patch).
-      # Se for 'dependencies' (produção) ou 'major', este step será pulado.
       - name: Auto-merge to Develop
-        if: >
-          steps.metadata.outputs.dependency-type == 'development' &&
-          (steps.metadata.outputs.update-type == 'version-update:semver-patch' || 
-           steps.metadata.outputs.update-type == 'version-update:semver-minor')
-        run: gh pr merge --auto --merge "$PR_URL"
+        # O merge manual via CLI do GitHub (gh pr merge)
+        run: gh pr merge --auto --merge "${{ github.event.pull_request.html_url || inputs.pr_number }}"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy-homolog:
     name: Deploy to Homologation
